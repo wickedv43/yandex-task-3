@@ -15,20 +15,12 @@ const (
 )
 
 // distance возвращает дистанцию(в километрах), которую преодолел пользователь за время тренировки.
-//
-// Параметры:
-//
-// action int — количество совершенных действий (число шагов при ходьбе и беге, либо гребков при плавании).
+
 func distance(action int) float64 {
 	return float64(action) * lenStep / mInKm
 }
 
 // meanSpeed возвращает значение средней скорости движения во время тренировки.
-//
-// Параметры:
-//
-// action int — количество совершенных действий(число шагов при ходьбе и беге, либо гребков при плавании).
-// duration float64 — длительность тренировки в часах.
 func meanSpeed(action int, duration float64) float64 {
 	if duration == 0 {
 		return 0
@@ -38,12 +30,6 @@ func meanSpeed(action int, duration float64) float64 {
 }
 
 // ShowTrainingInfo возвращает строку с информацией о тренировке.
-//
-// Параметры:
-//
-// action int — количество совершенных действий(число шагов при ходьбе и беге, либо гребков при плавании).
-// trainingType string — вид тренировки(Бег, Ходьба, Плавание).
-// duration float64 — длительность тренировки в часах.
 func ShowTrainingInfo(action int, trainingType string, duration, weight, height float64, lengthPool, countPool int) string {
 	// ваш код здесь
 	switch {
@@ -74,13 +60,6 @@ const (
 )
 
 // RunningSpentCalories возвращает количество потраченных колорий при беге.
-// ((18 * СредняяСкоростьВКм/ч * 1.79) * ВесСпортсменаВКг / mInKM
-// * ВремяТренировкиВЧасах * minInH)
-// Параметры:
-//
-// action int — количество совершенных действий(число шагов при ходьбе и беге, либо гребков при плавании).
-// weight float64 — вес пользователя.
-// duration float64 — длительность тренировки в часах.
 func RunningSpentCalories(action int, weight, duration float64) float64 {
 	// ваш код здесь
 	if duration == 0 {
@@ -96,13 +75,6 @@ const (
 )
 
 // WalkingSpentCalories возвращает количество потраченных калорий при ходьбе.
-//
-// Параметры:
-//
-// action int — количество совершенных действий(число шагов при ходьбе и беге, либо гребков при плавании).
-// duration float64 — длительность тренировки в часах.
-// weight float64 — вес пользователя.
-// height float64 — рост пользователя.
 func WalkingSpentCalories(action int, duration, weight, height float64) float64 {
 	// ваш код здесь
 	if duration == 0 {
@@ -118,12 +90,6 @@ const (
 )
 
 // swimmingMeanSpeed возвращает среднюю скорость при плавании.
-//
-// Параметры:
-//
-// lengthPool int — длина бассейна в метрах.
-// countPool int — сколько раз пользователь переплыл бассейн.
-// duration float64 — длительность тренировки в часах.
 func swimmingMeanSpeed(lengthPool, countPool int, duration float64) float64 {
 	if duration == 0 {
 		return 0
@@ -132,13 +98,6 @@ func swimmingMeanSpeed(lengthPool, countPool int, duration float64) float64 {
 }
 
 // SwimmingSpentCalories возвращает количество потраченных калорий при плавании.
-//
-// Параметры:
-//
-// lengthPool int — длина бассейна в метрах.
-// countPool int — сколько раз пользователь переплыл бассейн.
-// duration float64 — длительность тренировки в часах.
-// weight float64 — вес пользователя.
 func SwimmingSpentCalories(lengthPool, countPool int, duration, weight float64) float64 {
 	// ваш код здесь
 	if duration == 0 {
