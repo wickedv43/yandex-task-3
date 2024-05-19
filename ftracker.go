@@ -74,7 +74,8 @@ const (
 )
 
 // RunningSpentCalories возвращает количество потраченных колорий при беге.
-//
+// ((18 * СредняяСкоростьВКм/ч * 1.79) * ВесСпортсменаВКг / mInKM
+// * ВремяТренировкиВЧасах * minInH)
 // Параметры:
 //
 // action int — количество совершенных действий(число шагов при ходьбе и беге, либо гребков при плавании).
@@ -85,7 +86,7 @@ func RunningSpentCalories(action int, weight, duration float64) float64 {
 	if duration == 0 {
 		return 0
 	}
-	return ((runningCaloriesMeanSpeedMultiplier * meanSpeed(action, duration) * runningCaloriesMeanSpeedShift) * weight / mInKm * duration * minInH)
+	return (runningCaloriesMeanSpeedMultiplier * meanSpeed(action, duration) * runningCaloriesMeanSpeedShift) * weight / mInKm * duration * minInH
 }
 
 // Константы для расчета калорий, расходуемых при ходьбе.
@@ -107,7 +108,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	if duration == 0 {
 		return 0
 	}
-	return ((walkingCaloriesWeightMultiplier*weight + (math.Pow(meanSpeed(action, duration), 2)/height)*walkingSpeedHeightMultiplier*weight) * duration * minInH)
+	return (walkingCaloriesWeightMultiplier*weight + (math.Pow(meanSpeed(action, duration)*kmhInMsec, 2)/(height/cmInM))*walkingSpeedHeightMultiplier*weight) * duration * minInH
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
